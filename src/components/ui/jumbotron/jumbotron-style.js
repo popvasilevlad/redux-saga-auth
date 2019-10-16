@@ -9,7 +9,7 @@ const Wrapper = styled.div`
 const Title = styled.div`
 	font-size: 42px;
 	font-weight: 100;
-	padding: 30px 0;
+	padding: 20px 0;
 `;
 
 const Subtitle = styled.div`

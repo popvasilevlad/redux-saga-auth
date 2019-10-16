@@ -5,6 +5,8 @@ import Spinner from 'ui-components/spinner';
 import ValidationError from 'ui-components/validation-error';
 import CenteringWrapper from 'ui-components/centering-wrapper';
 import { validateBeforeAuth } from 'utils';
+import { loginAttempt } from 'actions';
+import { connect } from 'react-redux';
 
 const LoginForm = props => {
 	const emailRef = React.createRef();
@@ -18,9 +20,12 @@ const LoginForm = props => {
 
 		const newError = validateBeforeAuth(email, pass);
 
-		if (error) return setError(newError);
+		if (Object.keys(error).length) {
+			return setError(newError);
+		}
 
-		console.log('should Submit')
+		props.loginAttempt('email', 'pass');
+
 	}
 
 
@@ -53,6 +58,12 @@ const LoginForm = props => {
 			</Button>
 		</>
 	);
+};
+
+const mapDispatchToProps = dispatch => {
+	return {
+		loginAttempt: (email, pass) => dispatch(loginAttempt(email, pass))
+	}
 }
 
-export default LoginForm;
+export default connect('', mapDispatchToProps)(LoginForm);
