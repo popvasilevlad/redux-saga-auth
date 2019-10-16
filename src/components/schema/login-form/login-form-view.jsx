@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Input from 'ui-components/input';
 import Button from 'ui-components/button';
 import Spinner from 'ui-components/spinner';
@@ -11,26 +11,29 @@ import { connect } from 'react-redux';
 const LoginForm = props => {
 	const emailRef = React.createRef();
 	const passRef = React.createRef();
-	
 	const [error, setError] = useState({});
 
 	const handleSubmit = () => {
+		setError({});
+
 		const email = emailRef.current.value;
 		const pass = passRef.current.value;
 
 		const newError = validateBeforeAuth(email, pass);
 
-		if (Object.keys(error).length) {
+		if (Object.keys(newError).length) {
 			return setError(newError);
 		}
 
-		props.loginAttempt('email', 'pass');
-
-	}
+		props.loginAttempt(email, pass);
+	};
 
 
 	return (
 		<>
+			<CenteringWrapper wrapHeight={'50px'}>
+				<ValidationError text={!error.message && props.loginError} />
+			</CenteringWrapper>
 			<Input 
 				size={'full'}
 				placeholder={'E-mail address'}
@@ -54,7 +57,7 @@ const LoginForm = props => {
 				text={'Log in'}
 				handleClick={handleSubmit}
 			>
-				{/*<Spinner />*/}
+				{!!props.loading && <Spinner />}
 			</Button>
 		</>
 	);
@@ -64,6 +67,13 @@ const mapDispatchToProps = dispatch => {
 	return {
 		loginAttempt: (email, pass) => dispatch(loginAttempt(email, pass))
 	}
-}
+};
 
-export default connect('', mapDispatchToProps)(LoginForm);
+const mapStateToProps = state => {
+	return {
+		loading: state.loading,
+		loginError: state.loginError
+	}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

@@ -1,15 +1,7 @@
 import * as ACTIONS from 'constants/action-types';
-// import { getDataFromAPI } from './utils/api';
 
-export const loginAttempt = () => ({
-	type: ACTIONS.LOGIN_ATTEMPT
+export const loginAttempt = (email, password) => ({
+	type: ACTIONS.LOGIN_ATTEMPT,
+	email: email,
+	password: password
 });
-
-export const loginSucces = payload => ({
-	type: ACTIONS.LOGIN_SUCCESS,
-	payload
-});
-
-// const loginError = () => ({
-// 	type: ACTIONS.LOGIN_FAIL
-// });

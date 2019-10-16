@@ -1,14 +1,16 @@
 import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import AuthScreen from 'screens/auth';
-import HomeScreen from 'screens/home';
+import DashboardScreen from 'screens/dashboard';
+import RedirectHelper from 'utils/redirect';
 
 const App = () => {
     return (
     	<>
 	        <Router>
-	        	<Route path="/" component={AuthScreen} />
-	        	<Route path="/dashboard" component={HomeScreen} />
+	        	<Route path="/" exact component={AuthScreen} />
+	        	<Route path="/dashboard" component={DashboardScreen} />
+	        	<RedirectHelper />
 	        </Router>
 	    </>
     );

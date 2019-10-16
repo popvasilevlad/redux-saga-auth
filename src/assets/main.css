@@ -2,9 +2,11 @@ html {
 	height: 100%;
 }
 body {
+	position: relative;
 	margin: 0;
 	height: 100%;
 	font-family: 'Quicksand', sans-serif;
-	background: rgb(70,168,252);
-	background: radial-gradient(circle, rgba(70,168,252,1) 0%, rgba(20,71,125,1) 100%);
+	background-color: #123123;
+	background-color: #eaeaea;
+    color: #444444;
 };

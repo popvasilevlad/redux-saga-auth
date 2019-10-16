@@ -1,1 +1,0 @@
-export { default } from './home-screen-view';

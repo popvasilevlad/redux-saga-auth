@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
 	color: #FFF;
 	text-align: center;
-	padding: 0 0 50px;
+	padding: 0 0 10px;
 `;
 
 const Title = styled.div`

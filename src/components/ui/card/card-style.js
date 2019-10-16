@@ -6,7 +6,6 @@ const CardWrapper = styled.div`
 	background-color: #FFF;
 	border-radius: 10px;
 	font-size: 12px;
-	color: ${colors.fadedGray};
 	font-weight: 500;
 	padding: 20px;
 	border: 1px solid ${colors.whiteGray};

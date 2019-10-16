@@ -8,7 +8,7 @@ export const colors = {
 	primaryGreen: '#58a718',
 	darkerGreen: '#4a8a17',
 	primaryRed: '#d01d25',
-	darkRed: '#961d1d',
+	darkRed: '#561010',
 	lightRed: '#ffd0d0'
 };
 

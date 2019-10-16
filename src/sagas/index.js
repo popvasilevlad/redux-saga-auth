@@ -1,23 +1,27 @@
-import { put, takeLatest, all } from 'redux-saga/effects';
+import { put, takeLatest, all, call} from 'redux-saga/effects';
+import * as API from 'utils/api';
 import * as ACTIONS from 'constants/action-types';
 
-function* requestLogin() {
-    console.log('req login')
-    const json = yield fetch('https://reqres.in/api/login', { data: {
-        login: 'eve.holt@reqres.in',
-        password: 'cityslicka'
-    }})
-    .then(res => res.json());
+function* requestLogin(credentials) {
+    try {
+        const response = yield call(API.loginPostRequest, credentials);
+        yield put({ type: ACTIONS.LOGIN_SUCCESS, data: response.data});
+    } catch(res) {
+        yield put({ type: ACTIONS.LOGIN_FAIL, err: res.error });
+    };
+};
 
-    yield put({ type: ACTIONS.LOGIN_SUCCESS, json: json});
+function* redirectToDasboard() {
+    yield put({ type: ACTIONS.REDIRECT_TO_DASHBOARD });
 }
 
-    function* actionWatcher() {
-        yield takeLatest(ACTIONS.LOGIN_ATTEMPT, requestLogin)
-    }
+function* loginWatcher() {
+    yield takeLatest(ACTIONS.LOGIN_ATTEMPT, requestLogin);
+    yield takeLatest(ACTIONS.LOGIN_SUCCESS, redirectToDasboard);
+}
 
 export default function* rootSaga() {
     yield all([
-        actionWatcher()
+        loginWatcher()
     ]);
 }

@@ -4,7 +4,7 @@ import ValidationErrorWrapper from './validation-error-style';
 const ValidationError = props => (
 	<>
 		<ValidationErrorWrapper>
-			{props.text}
+			{props.text || props.children}
 		</ValidationErrorWrapper>
 	</>
 );

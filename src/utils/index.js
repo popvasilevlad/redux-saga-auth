@@ -5,22 +5,22 @@ export const validateBeforeAuth = (email, pass) => {
 		return {
 			message: 'Please enter your email address',
 			input: 'email'
-		}
-	}
-
-	if (!pass || !pass.trim().length) {
-		return {
-			message: 'Please enter your password',
-			input: 'pass'
-		}
+		};
 	}
 
 	if (!emailRegEx.test(email)) {
 		return {
 			message: 'The email address is invalid',
 			input: 'email'
-		}
+		};
+	}
+
+	if (!pass || !pass.trim().length) {
+		return {
+			message: 'Please enter your password',
+			input: 'pass'
+		};
 	}
 
 	return {};
-}
+};

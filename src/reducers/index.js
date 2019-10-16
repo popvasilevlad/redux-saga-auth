@@ -1,29 +1,42 @@
 import * as ACTIONS from 'constants/action-types';
 
 const initialState = {
-	loading: true,
+	loading: false,
+	toke: '',
+	loginError: ''
 };
 
 function rootReducer(state = initialState, action) {
+	console.log(action)
 	switch(action.type) {
 		case ACTIONS.LOGIN_ATTEMPT:
 			return {
 				...state,
-				loading: true
+				loading: true,
+				loginError: ''
 			};
 
 		case ACTIONS.LOGIN_SUCCESS:
 			return {
 				...state,
-				loading: true,
-				data: action.payload
+				loading: false,
+				token: action.data.token,
+				loginError: ''
 			};
 
-		case ACTIONS.LOGIN_FAILED:
+		case ACTIONS.LOGIN_FAIL:
 			return {
 				...state,
-				loading: true
+				loading: false,
+				loginError: action.err
 			};
+
+		case ACTIONS.REDIRECT_TO_DASHBOARD:
+			return {
+				...state,
+				page: '/dashboard'
+			};
+
 		default: 
 			return state;
 	}	
