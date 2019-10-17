@@ -7,13 +7,13 @@ const initialState = {
 };
 
 function rootReducer(state = initialState, action) {
-	console.log(action)
 	switch(action.type) {
 		case ACTIONS.LOGIN_ATTEMPT:
 			return {
 				...state,
 				loading: true,
-				loginError: ''
+				loginError: '',
+				page: '/'
 			};
 
 		case ACTIONS.LOGIN_SUCCESS:
@@ -36,6 +36,7 @@ function rootReducer(state = initialState, action) {
 				...state,
 				page: '/dashboard'
 			};
+
 
 		default: 
 			return state;

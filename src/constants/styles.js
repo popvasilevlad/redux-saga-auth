@@ -1,8 +1,4 @@
 export const colors = {
-	primaryBlue: '#238EC6',
-	primaryBlueActive: '#5d8694',
-	fadedBlue: '#82939D',
-	primaryGray: 'rgba(0,0,0,0.7)',
 	fadedGray: '#a0a0a0',
 	whiteGray: 'rgba(0,0,0,0.1)',
 	primaryGreen: '#58a718',
